@@ -1,5 +1,5 @@
 import React from 'react';
-import { listItemsFooter } from '../../services/api';
+import { listItemsFooter } from '../../../services/api';
 
 export default function ItemsFooterHome() {
   return (

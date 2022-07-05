@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import styled from 'styled-components';
 import { SectionMovieContent } from './styles';
 import MovieItem from './MovieItem';
 import { getMovies } from '../../services/api';

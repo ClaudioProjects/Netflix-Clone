@@ -13,6 +13,7 @@ export const MoviesBox = styled.div`
   flex-flow: column;
   justify-content: center;
   padding: 0 0.1vw 8vw 2.5vw;
+  padding-top: 5vw;
 
   @media (max-width: 770px) {
     padding-left: 4vw;

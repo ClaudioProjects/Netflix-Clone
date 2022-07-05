@@ -6,7 +6,6 @@ import RoutesMain from './routes';
 function App() {
   return (
     <Router>
-      {console.log((60 * 100) / 1500)}
       <RoutesMain></RoutesMain>
     </Router>
   );

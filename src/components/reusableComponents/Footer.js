@@ -4,7 +4,7 @@ import {
   FaFacebook, FaInstagram, FaTwitter, FaYoutube, 
 } from 'react-icons/fa';
 import { Footer } from './styles';
-import ItemsFooterHome from './ItemsFooter';
+import ItemsFooterHome from './singleComponents/ItemsFooter';
 
 export default function FooterHome() {
   return (
