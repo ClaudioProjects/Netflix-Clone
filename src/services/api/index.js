@@ -1,6 +1,7 @@
 const API_KEY = 'api_key=55c0eaff4f483cf91aefa4794e50f199';
 const API_BASE = 'https://api.themoviedb.org/3';
 const LANGUAGE = '&language=pt-BR';
+
 const categories = [
   {
     name: 'trending',
@@ -128,10 +129,21 @@ export const listItemsFooter = [
   ['Cartão pré-pago', 'Termos de uso', 'Informações corporativas'],
   ['Imprensa', 'Privacidade', 'Entre em contato'],
 ];
-export const URL_IMG = 'https://image.tmdb.org/t/p/w400/';
+export const URL_IMG = 'https://image.tmdb.org/t/p/';
 export const getMovies = async (path) => {
   try {
     const url = `${API_BASE}${path}`;
+    const response = await fetch(url);
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getChosenMovie = async (id, isMovie) => {
+  try {
+    const movieOrTv = isMovie ? 'movie' : 'tv';
+    const url = `${API_BASE}/${movieOrTv}/${id}?${API_KEY}${LANGUAGE}`;
     const response = await fetch(url);
     return await response.json();
   } catch (e) {

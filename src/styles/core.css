@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Netflix Sans';
+  font-family: 'Gotham';
 }
 
 body::-webkit-scrollbar {
@@ -23,46 +25,11 @@ body::-webkit-scrollbar-thumb:hover {
   background: #d90913e8; 
 }
 
-@font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 100;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff) format('woff')
-}
 
 @font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 300;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Lt.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Lt.woff) format('woff')
-}
-
-@font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 400;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff) format('woff')
-}
-
-@font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 700;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff) format('woff')
-}
-
-@font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 800;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff) format('woff')
-}
-
-@font-face {
-  font-family: 'Netflix Sans';
-  font-weight: 900;
-  font-display: optional;
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff) format('woff')
+  font-family: 'Gotham';
+  font-weight: 600;
+  src: url('../../public/fonts/GothamMedium.ttf') format('truetype');
 }
 
 .hidden {
@@ -70,5 +37,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .black {
-  background: #141414f6;
+  background: #141414e3;
+}
+
+.shadow {
+  -webkit-box-shadow: 0px 4px 9px -1px rgba(0,0,0,0.56);
+  -moz-box-shadow: 0px 4px 9px -1px rgba(0,0,0,0.56);
+  box-shadow: 0px 4px 9px -1px rgba(0,0,0,0.56);
 }

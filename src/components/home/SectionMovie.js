@@ -3,19 +3,9 @@ import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SectionMovieContent } from './styles';
 import MovieItem from './MovieItem';
-import { getMovies } from '../../services/api';
 
-export default function SectionMovie({ title, path }) {
+export default function SectionMovie({ title, colectionMovies }) {
   const [scrollX, setScrollX] = React.useState(0);
-  const [movies, setMovies] = React.useState([]);
-  const fetchMovies = async (_path) => {
-    try {
-      const data = await getMovies(_path);
-      setMovies(data?.results);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   function handleNavegationRight() {
     if (window.innerWidth >= 770) {
@@ -31,10 +21,6 @@ export default function SectionMovie({ title, path }) {
     }
   }
 
-  React.useEffect(() => {
-    fetchMovies(path);
-  }, [path]);
-
   return (
     <SectionMovieContent>
       <h2 className="title-section-movies">{title}</h2>
@@ -45,17 +31,17 @@ export default function SectionMovie({ title, path }) {
           transition: '300ms ease-in-out',
           marginLeft: `${scrollX}vw`,
         }
-      }>{movies?.map((movie, index) => {
+      }>{colectionMovies?.map((movie, index) => {
         if (index > 19) return;
         return ( 
           <MovieItem key={movie.id} movie={movie}></MovieItem>
         );
       })}
       </div>
-      <button type="button" className="left-navegation" onClick={handleNavegationLeft}>
+      <button type="button" className="left-navegation" onClick={handleNavegationLeft} style={scrollX === 0 ? { display: 'none' } : {}}>
         <FaChevronLeft></FaChevronLeft>
       </button>
-      <button type="button" className="right-navegation" onClick={handleNavegationRight}>
+      <button type="button" className="right-navegation" onClick={handleNavegationRight} style={scrollX === -141 ? { display: 'none' } : {}}>
         <FaChevronRight></FaChevronRight>
       </button>
     </SectionMovieContent>

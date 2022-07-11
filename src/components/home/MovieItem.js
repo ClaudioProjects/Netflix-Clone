@@ -11,7 +11,7 @@ export default function MovieItem(movie) {
   
   return (
     <div className="movie-item">
-      <img src={URL_IMG + movie.movie.poster_path} alt={movie.movie.title}></img>
+      <img src={`${URL_IMG}w400${movie.movie.poster_path}`} alt={movie.movie.title}></img>
       <div className="details-movie-item">
         <div className="details-move-item-text">
           {getGenre(movie.movie.genre_ids).map((genre, index) => {

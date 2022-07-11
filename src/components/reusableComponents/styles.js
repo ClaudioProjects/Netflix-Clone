@@ -67,6 +67,7 @@ export const Header = styled.div`
   align-items: center;
   font-size: 1.1vw;
   position: fixed;
+  top: 0;
   z-index: 30;
   transition: 200ms ease-in-out;
 
@@ -117,9 +118,9 @@ export const Header = styled.div`
   }
 
   @media(max-width: 770px) {
-    padding-top: 4vh;
     margin-bottom: 3vh;
     font-size: 3.5vw;
+    height: 10vw;
 
     .header-logo {
       height: 8vw;
@@ -127,7 +128,7 @@ export const Header = styled.div`
     }
 
     .header-items {
-      width: 24vw;
+      width: 25vw;
     }
 
     .search-icon {

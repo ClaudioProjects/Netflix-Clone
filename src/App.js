@@ -6,7 +6,7 @@ import RoutesMain from './routes';
 function App() {
   return (
     <Router>
-      <RoutesMain></RoutesMain>
+          <RoutesMain></RoutesMain>
     </Router>
   );
 }
