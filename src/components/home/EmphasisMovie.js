@@ -61,6 +61,7 @@ const EmphasisMovieBox = styled.div`
     align-items: center;
     gap: 0.2em;
     border: 0;
+    cursor: pointer;
   }
 
   @media(max-width: 770px) {
@@ -81,31 +82,32 @@ const EmphasisMovieBox = styled.div`
     }
 
     .view-more-emphasis {
-      font-size: 2vw;
+      font-size: 3vw;
     }
   }
 `;
 
-export default function EmphasisMovie(chosenMovie) {
-  // function premiereDate() {
-  //   const data = chosenMovie.chosenMovie.release_date 
-  //     ? chosenMovie.chosenMovie.release_date.split('-')
-  //     : chosenMovie.chosenMovie.first_air_date.split('-');
-  //   return data[0];
-  // }
+export default function EmphasisMovie(props) {
+  function setModal() {
+    props.props({
+      id: props.chosenMovie.id,
+      isSet: true,
+      isMovie: props.chosenMovie.media_type !== 'tv',
+    });
+  }
 
   function isTv() {
-    if (chosenMovie.chosenMovie.seasons) return true;
+    if (props.chosenMovie.seasons) return true;
     return false;
   }
 
   function toSeasons() {
-    const string = chosenMovie.chosenMovie.seasons.length === 1 ? 'Temporada' : 'Temporadas';
-    return `${chosenMovie.chosenMovie.seasons.length} ${string}`;
+    const string = props.chosenMovie.seasons.length === 1 ? 'Temporada' : 'Temporadas';
+    return `${props.chosenMovie.seasons.length} ${string}`;
   }
   
   function viewOverView() {
-    const text = chosenMovie.chosenMovie.overview;
+    const text = props.chosenMovie.overview;
     const stringArr = text.split('');
     if (stringArr.length === 0 || !stringArr) return '';
     if (stringArr.length < 150) return `${text}...`;
@@ -114,11 +116,11 @@ export default function EmphasisMovie(chosenMovie) {
 
   return (
     <EmphasisMovieBox className="emphasis-movie">
-      <img src={`${`${URL_IMG}/original`}${chosenMovie.chosenMovie.backdrop_path}`} alt="emphasis movie"></img>
+      <img src={`${`${URL_IMG}/original`}${props.chosenMovie.backdrop_path}`} alt="emphasis movie"></img>
       <div className="blur-details"></div>
       <div className="details">
         <p className="title-emphasis">
-          {chosenMovie.chosenMovie.title ? chosenMovie.chosenMovie.title : chosenMovie.chosenMovie.name }
+          {props.chosenMovie.title ? props.chosenMovie.title : props.chosenMovie.name }
         </p>
         <div className="desktop-details">
           <div className="details-movie">
@@ -127,13 +129,13 @@ export default function EmphasisMovie(chosenMovie) {
           <p className="overview">
             {viewOverView()}
           </p>
-            {chosenMovie.chosenMovie.genres.map((genre) => {
+            {props.chosenMovie.genres.map((genre) => {
               return (
                 <span className="genre" key={genre.id}>{genre.name}</span>
               );
             })}
         </div>
-        <button type="button" className="view-more-emphasis shadow">
+        <button type="button" className="view-more-emphasis shadow" onClick={setModal}>
           <FaInfoCircle></FaInfoCircle>
           Mais informações
         </button>

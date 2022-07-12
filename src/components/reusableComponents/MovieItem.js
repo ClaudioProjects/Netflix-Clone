@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
+import { MovieItemStyle } from './styles';
 import { URL_IMG, genre } from '../../services/api';
 
 export default function MovieItem(props) {
@@ -18,7 +20,7 @@ export default function MovieItem(props) {
   }
   
   return (
-    <button style={{ border: 'none' }} className="movie-item" onClick={openModal}>
+    <MovieItemStyle style={{ border: 'none' }} className="movie-item" onClick={openModal}>
       <img src={`${URL_IMG}w400${props.movie.poster_path}`} alt={props.movie.title}></img>
       <div className="details-movie-item">
         <div className="details-move-item-text">
@@ -33,6 +35,6 @@ export default function MovieItem(props) {
         Clique para mais informações
       </div>
       </div>
-    </button>
+    </MovieItemStyle>
   );
 }

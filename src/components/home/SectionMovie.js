@@ -2,7 +2,7 @@
 import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SectionMovieContent } from './styles';
-import MovieItem from './MovieItem';
+import MovieItem from '../reusableComponents/MovieItem';
 
 export default function SectionMovie(props) {
   const [scrollX, setScrollX] = React.useState(0);

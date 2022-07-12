@@ -74,7 +74,7 @@ function Home() {
       <HomeBox className="home-box">
         <Header isHome></Header>
         {modal.isSet && <ModalMovie props={setIdModalFNC} modal={modal}></ModalMovie>}
-        <EmphasisMovie chosenMovie={chosenMovie}></EmphasisMovie>
+        <EmphasisMovie props={setIdModalFNC} chosenMovie={chosenMovie}></EmphasisMovie>
         <MoviesBox className="movies-box">
           {
           colectionMovies.map((item) => {

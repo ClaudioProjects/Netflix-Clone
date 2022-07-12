@@ -23,69 +23,16 @@ export const SectionMovieContent = styled.div`
 
   .movie-item {
     height: 100%;
-    transition: 50ms ease-in-out;
-    margin: 0 0.2vw;
-    position: relative;
-    z-index: 10;
-    cursor: pointer;
   }
 
   .movie-item img {
     height: 100%;
   }
 
-  .movie-item:hover {
-    transition: 300ms ease-in-out;
-    transform: scale(1.3);
-    z-index: 20;
-  }
-
-  .movie-item:hover .details-movie-item {
-    display: block;
-  }
-
-  .details-movie-item {
-    background: #252525;
-    color: #3caa57;
-    font-size: 0.7vw;
-    display: none;
-    position: absolute;
-    bottom: -4vw;
-    border-radius: 0 0 0.5vw .5vw;
-    width: 100%;
-    height: 4vw;
-    padding: 0.3vw;
-    font-weight: 600;
-    transition: 300ms ease-in-out;
-  }
-
-  .details-move-item-text {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    height: 2vw;
-    flex-wrap: wrap;
-  }
-
-  .details-move-item-text span {
-    margin: 0 0.2vw;
-  }
-
   .view-more {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #e5e5e5;
-    border: none;
     height: 1.5vw;
-    border-radius: 0 0 0.5vw .5vw;
     font-weight: 800;
-    color: #141414;
     font-size: 0.6vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .left-navegation, .right-navegation {
@@ -135,15 +82,6 @@ export const SectionMovieContent = styled.div`
     .title-section-movies {
       font-size: 4vw;
       color: white;
-    }
-
-    .movie-item:hover .details-movie-item {
-      display: none;
-    }
-
-    .movie-item:hover {
-      transform: scale(1);
-      z-index: 10;
     }
   }
 

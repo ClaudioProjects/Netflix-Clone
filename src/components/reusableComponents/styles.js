@@ -146,22 +146,90 @@ export const Header = styled.div`
   }
 `;
 
+export const MovieItemStyle = styled.button`
+  transition: 100ms ease-in-out;
+  margin: 0 0.2vw;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+
+  :hover {
+    transition: 300ms ease-in-out;
+    transform: scale(1.3);
+    z-index: 20;
+  }
+
+  :hover .details-movie-item {
+    display: block;
+  }
+
+  .details-movie-item {
+    background: #252525;
+    color: #3caa57;
+    display: none;
+    position: absolute;
+    border-radius: 0 0 0.5vw .5vw;
+    width: 100%;
+    transition: 300ms ease-in-out;
+    font-size: 0.7vw;
+    bottom: -3.9vw;
+    height: 4vw;
+    padding: 0.3vw;
+    font-weight: 600;
+  }
+    
+  .details-move-item-text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 2vw;
+  }
+
+  .details-move-item-text span {
+    margin: 0 0.2vw;
+  }
+
+  .view-more {
+    position: absolute;
+    background: #e5e5e5;
+    width: 100%;
+    border: none;
+    border-radius: 0 0 0.5vw .5vw;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #141414;
+    height: 1.5vw;
+  }
+
+  @media(max-width: 770px) {
+    :hover {
+      transform: scale(1);
+      z-index: 10;
+    }
+
+    .movie-item:hover .details-movie-item {
+      display: none;
+    }
+  }
+`;
+
 export const Modal = styled.div`
+  transition: 200ms ease-in-out;
   position: fixed;
   background-color: rgba(0,0,0,0.7);
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   z-index: 300;
   top: 0;
   overflow-y: auto;
 
-  * {
-    font-size: 1vw;
-  }
   
   .modal-content {
     overflow-y: auto;
-    height: 90vw;
     width: 60vw;
     background: #141414;
     position: absolute;
@@ -186,18 +254,22 @@ export const Modal = styled.div`
     cursor: pointer;
     z-index: 20;
   }
-
+  
   .closeModal svg {
     height: 2em;
     width: 2em;
   }
-
+  
   .content-title-img {
     position: relative;
   }
-
+  
   .content-title-img img {
     width: 100%;
+  }
+  
+  .title>* {
+    font-size: 1vw;
   }
 
   .title {
@@ -283,41 +355,104 @@ export const Modal = styled.div`
     color: #3d3d3d;
   }
 
+  .section-movie-modal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5vw;
+    width: 95%;
+    margin: 0 auto;
+    padding: 4vw 0 10vw;
+  }
+
+  .section-movie-modal h2 {
+    display: block;
+    width: 100%;
+    padding-bottom: 3vw;
+    padding-left: 2.3vw;
+    color: #d3d3d3;
+    font-size: 2vw;
+    grid-column: 1 / 5;
+  }
+
+  .movie-item{
+    width: 100%;
+    margin-bottom: 2vw;
+  }
+  
+  .movie-item img {
+    height: 100%;
+    width: 100%;
+  }
+  
+
   @media(max-width: 770px) {
-    *{
-      font-size: 2.5vw;
-    }
 
     .modal-content {
       width: 100%;
+      height: 100%;
       top: 0;
     }
 
+    .closeModal{
+      padding: 1vw;
+    }
+
+    .title {
+      font-size: 1.6vw;
+      height: 36%;
+    }
+
+    .title h2 {
+      margin-bottom: 2vw;
+    }
+
     .btn-box {
-      width: 30%;
+      width: 65%;
+      font-size: 3vw;
+    }
+
+    .view {
+      width: 60%;
     }
 
     .modal-details {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
 
     .modal-details>* {
-      font-size: 54vw;
+      font-size: 3.5vw;
     }
 
     .header-overview-modal {
       width: 100%;
+      padding-bottom: 3vw;
     }
 
     .overview-modal {
       width: 97%;
       margin: 0 auto;
+      padding-bottom: 3vw;
     }
 
     .other-details-modal {
       width: 97%;
       padding-left: 2vw;
       padding: 2vw;
+    }
+
+    .movie-item{
+      width: 100%;
+      margin-bottom: 4vw;
+    }
+
+    .section-movie-modal {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .section-movie-modal h2 {
+      font-size: 5vw;
+      grid-column: 1 / 4;
     }
   }
 `;
