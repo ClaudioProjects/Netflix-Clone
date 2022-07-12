@@ -231,6 +231,7 @@ export const Modal = styled.div`
   .modal-content {
     overflow-y: auto;
     width: 60vw;
+    min-height: 100vh;
     background: #141414;
     position: absolute;
     top: 10vw;
@@ -332,10 +333,10 @@ export const Modal = styled.div`
   }
 
   .header-overview-modal {
-    width: 70%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    font-size: 1em;
+    font-size: 1.5vw;
     margin-bottom: 2vw;
   }
 
@@ -427,6 +428,7 @@ export const Modal = styled.div`
     .header-overview-modal {
       width: 100%;
       padding-bottom: 3vw;
+      font-size: 3.5vw;
     }
 
     .overview-modal {

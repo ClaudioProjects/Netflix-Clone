@@ -1,35 +1,60 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Load = styled.div`
-  height: 100%;
-  position: fixed;
+const Loading = styled.div`
+  position: absolute;
   top: 0;
-  border: 0;
-  right: 0;
   left: 0;
-  z-index: 100;
-  background-color: black;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.8vw;
+  background: #141414;
 
-  img {
-    height: 20%;
+  .ring {
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+    animation: ring 0.6s linear infinite;
   }
 
-  @media(max-width: 770) {
-    img {
-      height: 80%
+  @keyframes ring {
+    0% {
+      transform: rotate(0deg);
+      box-shadow: .1em .2em .2em #e50914;
+    }
+
+    50% {
+      transform: rotate(180deg);
+      box-shadow: .1em .2em .2em #e50914;
+    }
+
+    100% {
+      transform: rotate(360deg);
+      box-shadow: .1em .2em .2em #e50914;
     }
   }
 
+  .ring::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255,255,255,.3);
+  }
+
+  @media(max-width: 770px) {
+    font-size: 1.5em;
+  }
 `;
 
-export default function Loading() {
+export default function LoadingO() {
   return (
-    <Load className="loading">
-      <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif" alt="loading netflix"></img>
-    </Load>
+    <Loading>
+      <div className="ring"></div>
+    </Loading>
   );
 }

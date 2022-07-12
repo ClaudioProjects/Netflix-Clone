@@ -14,19 +14,23 @@ function Home() {
   const [colectionMovies, setColectionMovies] = React.useState([]);
   const [chosenMovie, setChosenMovie] = React.useState({});
   const [modal, setModal] = React.useState({});
+  const [closeLoad, setCloseLoad] = React.useState(Boolean);
 
   function setIdModalFNC(Param) {
     setModal(Param);
   } 
 
-  const loadAll = () => {
-    if (colectionMovies.length === categories.length && Object.values(chosenMovie).length > 0) return true;
-    return false;
+  const viewHome = () => {
+    setTimeout(() => {
+      document.querySelector('.home-page').classList.remove('hidden');
+      setCloseLoad(true);
+    }, 1500);
   };
 
   const fetchAll = async () => {
     try {
       await fetchChosenMovie(await fetchMovies());
+      viewHome();
     } catch (e) {
       console.log(e);
     }
@@ -69,32 +73,29 @@ function Home() {
   }, [categories]);
 
   return (
-    loadAll() 
-      ? (
       <HomeBox className="home-box">
-        <Header isHome></Header>
-        {modal.isSet && <ModalMovie props={setIdModalFNC} modal={modal}></ModalMovie>}
-        <EmphasisMovie props={setIdModalFNC} chosenMovie={chosenMovie}></EmphasisMovie>
-        <MoviesBox className="movies-box">
-          {
-          colectionMovies.map((item) => {
-            return (
-              <SectionMovie
-                props={setIdModalFNC}
-                key={item.name} 
-                item={item}
-              >
-              </SectionMovie>
-            );
-          })
-          }
-        </MoviesBox>
-        <FooterHome></FooterHome>
+        {colectionMovies.length === categories.length && Object.values(chosenMovie).length > 0 && <div className="home-page hidden">
+          <Header isHome></Header>
+          {modal.isSet && <ModalMovie props={setIdModalFNC} modal={modal}></ModalMovie>}
+          <EmphasisMovie props={setIdModalFNC} chosenMovie={chosenMovie}></EmphasisMovie>
+          <MoviesBox className="movies-box">
+            {
+            colectionMovies.map((item) => {
+              return (
+                <SectionMovie
+                  props={setIdModalFNC}
+                  key={item.name} 
+                  item={item}
+                >
+                </SectionMovie>
+              );
+            })
+            }
+          </MoviesBox>
+          <FooterHome></FooterHome>
+        </div>}
+        {!closeLoad && <Loading></Loading>}
       </HomeBox>
-      )
-      : (
-      <Loading></Loading>
-      )
   );
 }
 

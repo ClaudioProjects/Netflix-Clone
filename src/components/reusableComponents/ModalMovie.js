@@ -4,19 +4,23 @@ import {
   FaTimes, FaPlay, FaPlus, FaRegThumbsUp, FaHorse, 
 } from 'react-icons/fa';
 import MovieItem from './MovieItem';
+import Loading from './Loading';
 import { getChosenMovie, URL_IMG, getSimilarMovie } from '../../services/api'; 
 import { Modal } from './styles';
 
 export default function ModalMovie(props) {
   const [movie, setMovie] = React.useState({});
   const [similarMovie, setSimilarMovie] = React.useState([]);
+  const [closeLoad, setCloseLoad] = React.useState(Boolean);
 
   const fetchMovie = async () => {
+    start();
     const data = await getChosenMovie(props.modal.id, props.modal.isMovie);
-    setMovie(data);
     await fetchSimilarMovie();
+    setMovie(data);
+    viewModal();
   };
-
+  
   const fetchSimilarMovie = async () => {
     const data = await getSimilarMovie(props.modal.id, props.modal.isMovie);
     setSimilarMovie(data.results);
@@ -30,8 +34,20 @@ export default function ModalMovie(props) {
     }
   }, [props.modal]);
   
-  if (props.modal.isSet) document.querySelector('body').classList.add('hidden-overflow');
+  function viewModal() {
+    setTimeout(() => {
+      document.querySelector('.load').classList.remove('hidden');
+      setCloseLoad(true);
+    }, 1500);
+  }
   
+  function start() {
+    if (props.modal.isSet) document.querySelector('body').classList.add('hidden-overflow');
+    setMovie({});
+    setCloseLoad(false);
+    document.querySelector('.modal-box').scrollTop = 0;
+  }
+ 
   function toggleOverflowBody() {
     document.querySelector('body').classList.toggle('hidden-overflow');
   }
@@ -68,52 +84,55 @@ export default function ModalMovie(props) {
   }
 
   return (
-    <Modal>
-      {movie.id && similarMovie.length > 0
-        && <div className="modal-content shadow">
-          <button className="closeModal" onClick={closeModal}><FaTimes></FaTimes></button>
-          <div className="content-title-img">
-            <img src={`${URL_IMG}/w1280${movie.backdrop_path}`} alt="title"></img>
-            <div className="title">
-              <h2>{props.modal.isMovie ? movie.title : movie.name}</h2>
-              <div className="btn-box">
-                <div className="view shadow"><FaPlay></FaPlay>Assistir</div>
-                <div className="addList"><FaPlus></FaPlus></div>
-                <div className="Like"><FaRegThumbsUp /></div>
+    <Modal className="modal-box">
+        <div className="modal-content shadow">
+          {movie.id 
+            && <div className="load hidden" style={{ transition: '2000ms ease in out' }}>
+              <button className="closeModal" onClick={closeModal}><FaTimes></FaTimes></button>
+              <div className="content-title-img">
+                <img src={`${URL_IMG}/w1280${movie.backdrop_path}`} alt="title"></img>
+                <div className="title">
+                  <h2>{props.modal.isMovie ? movie.title : movie.name}</h2>
+                  <div className="btn-box">
+                    <div className="view shadow"><FaPlay></FaPlay>Assistir</div>
+                    <div className="addList"><FaPlus></FaPlus></div>
+                    <div className="Like"><FaRegThumbsUp /></div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="modal-details">
-            <div className="overview-modal">
-              <div className="header-overview-modal">
-                <span className="average">{movie.vote_average * 10}% Relevante</span>
-                <span>{premiereDate()}</span>
-                <span>{props.modal.isMovie ? toRuntime() : toSeasons()}</span>
+              <div className="modal-details">
+                <div className="overview-modal">
+                  <div className="header-overview-modal">
+                    <span className="average">{movie.vote_average * 10}% Relevante</span>
+                    <span>{premiereDate()}</span>
+                    <span>{props.modal.isMovie ? toRuntime() : toSeasons()}</span>
+                  </div>
+                  <div>
+                    {movie.overview}
+                  </div>
+                </div>
+                <div className="other-details-modal">
+                  <div>
+                    <span className="identifiquer">Generos: </span>
+                    <span className="items-modal">{toCompanies(movie.genres)}</span>
+                  </div>
+                  <div>
+                    {movie.production_companies.length > 0 && <span className="identifiquer">Feito por: </span>}
+                    <span className="items-modal">{toCompanies(movie.production_companies)}</span>
+                  </div>
+                </div>
               </div>
-              <div>
-                {movie.overview}
+              <div className="section-movie-modal">
+                <h2>Titulos semelhantes</h2>
+                {similarMovie.map((movie) => {
+                  return (
+                    movie.id !== props.modal.id && <MovieItem className="shadow" key={movie.id} props={props.props} movie={movie} style={{ border: 'none' }} />
+                  );
+                })}
               </div>
-            </div>
-            <div className="other-details-modal">
-              <div>
-                <span className="identifiquer">Generos: </span>
-                <span className="items-modal">{toCompanies(movie.genres)}</span>
-              </div>
-              <div>
-                {movie.production_companies.length > 0 && <span className="identifiquer">Feito por: </span>}
-                <span className="items-modal">{toCompanies(movie.production_companies)}</span>
-              </div>
-            </div>
-          </div>
-          <div className="section-movie-modal">
-            <h2>Titulos semelhantes</h2>
-            {similarMovie.map((movie) => {
-              return (
-                movie.id !== props.modal.id && <MovieItem className="shadow" key={movie.id} props={props.props} movie={movie} />
-              );
-            })}
-          </div>
-        </div>}
+            </div>}
+            {!closeLoad && <Loading></Loading>}
+        </div>
     </Modal>
   );
 }
