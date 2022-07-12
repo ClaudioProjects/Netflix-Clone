@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { logDOM } from '@testing-library/react';
 import categories, { getMovies, getChosenMovie } from '../../services/api';
 import { HomeBox, MoviesBox } from './styles';
 import Loading from '../../components/reusableComponents/Loading';
@@ -8,10 +8,16 @@ import Header from '../../components/reusableComponents/Header';
 import EmphasisMovie from '../../components/home/EmphasisMovie';
 import SectionMovie from '../../components/home/SectionMovie';
 import FooterHome from '../../components/reusableComponents/Footer';
+import ModalMovie from '../../components/reusableComponents/ModalMovie';
 
 function Home() {
   const [colectionMovies, setColectionMovies] = React.useState([]);
   const [chosenMovie, setChosenMovie] = React.useState({});
+  const [modal, setModal] = React.useState({});
+
+  function setIdModalFNC(Param) {
+    setModal(Param);
+  } 
 
   const loadAll = () => {
     if (colectionMovies.length === categories.length && Object.values(chosenMovie).length > 0) return true;
@@ -67,16 +73,16 @@ function Home() {
       ? (
       <HomeBox className="home-box">
         <Header isHome></Header>
+        {modal.isSet && <ModalMovie props={setIdModalFNC} modal={modal}></ModalMovie>}
         <EmphasisMovie chosenMovie={chosenMovie}></EmphasisMovie>
         <MoviesBox className="movies-box">
           {
           colectionMovies.map((item) => {
             return (
               <SectionMovie
+                props={setIdModalFNC}
                 key={item.name} 
-                title={item.title} 
-                path={item.path}
-                colectionMovies={item.api}
+                item={item}
               >
               </SectionMovie>
             );

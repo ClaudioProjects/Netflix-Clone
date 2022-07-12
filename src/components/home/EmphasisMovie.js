@@ -13,9 +13,10 @@ const EmphasisMovieBox = styled.div`
   .blur-details{
     position: absolute;
     height: 100vw;
+    border-radius: 10%;
     background: rgba(0,0,0,0.5);
-    filter: blur(2vw);
-    width: 54%;
+    filter: blur(3.5vw);
+    width: 60%;
     top: 6vw;
     left: -2vw;
   }
@@ -76,11 +77,11 @@ const EmphasisMovieBox = styled.div`
     }
 
     .title-emphasis {
-      font-size: 5vw;
+      font-size: 3.5vw;
     }
 
     .view-more-emphasis {
-      font-size: 2.6vw;
+      font-size: 2vw;
     }
   }
 `;

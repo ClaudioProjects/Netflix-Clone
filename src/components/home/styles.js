@@ -80,16 +80,18 @@ export const SectionMovieContent = styled.div`
     border: none;
     height: 1.5vw;
     border-radius: 0 0 0.5vw .5vw;
-    cursor: pointer;
     font-weight: 800;
     color: #141414;
     font-size: 0.6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .left-navegation, .right-navegation {
     position: absolute;
-    height: 87.5%;
-    bottom: 0;
+    height: 96%;
+    bottom: 0vw;
     z-index: 15;
     border: none;
     width: 3vw;
@@ -108,7 +110,7 @@ export const SectionMovieContent = styled.div`
   }
 
   .right-navegation {
-    left: 94vw; 
+    right: -0.4vw; 
   }
 
   .left-navegation {

@@ -4,27 +4,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Gotham';
+  font-family: 'Ubuntu', sans-serif;
 }
 
-body::-webkit-scrollbar {
-  width: 10px;
+.hidden-overflow {
+  overflow-y: hidden;
 }
-
-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.918);
-  width: 20px;
-}
- 
-body::-webkit-scrollbar-thumb {
-  background: #d90913c2; 
-  border-radius: 5px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: #d90913e8; 
-}
-
 
 @font-face {
   font-family: 'Gotham';
@@ -38,6 +23,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .black {
   background: #141414e3;
+  background: #141414c4;
 }
 
 .shadow {

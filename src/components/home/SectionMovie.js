@@ -4,8 +4,12 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SectionMovieContent } from './styles';
 import MovieItem from './MovieItem';
 
-export default function SectionMovie({ title, colectionMovies }) {
+export default function SectionMovie(props) {
   const [scrollX, setScrollX] = React.useState(0);
+
+  function setModal(obj) {
+    props.props(obj);
+  }
 
   function handleNavegationRight() {
     if (window.innerWidth >= 770) {
@@ -23,7 +27,7 @@ export default function SectionMovie({ title, colectionMovies }) {
 
   return (
     <SectionMovieContent>
-      <h2 className="title-section-movies">{title}</h2>
+      <h2 className="title-section-movies">{props.item.title}</h2>
       <div
         className="section-movie-content"
         style={
@@ -31,10 +35,11 @@ export default function SectionMovie({ title, colectionMovies }) {
           transition: '300ms ease-in-out',
           marginLeft: `${scrollX}vw`,
         }
-      }>{colectionMovies?.map((movie, index) => {
+      }>{props.item.api?.map((movie, index) => {
         if (index > 19) return;
         return ( 
-          <MovieItem key={movie.id} movie={movie}></MovieItem>
+          // eslint-disable-next-line react/jsx-no-bind
+          <MovieItem key={movie.id} props={setModal} movie={movie}></MovieItem>
         );
       })}
       </div>

@@ -4,6 +4,16 @@ export const HomeBox = styled.div`
   width: 100%;
   height: 100%;
   background: #141414;
+
+  .handleTeste{
+  height: 5vw;
+  width: 5vw;
+  background: blue;
+  position: absolute;
+  z-index: 200000000000;
+  top: 10vw;
+  right: 50%;
+}
 `;
 
 export const MoviesBox = styled.div`
