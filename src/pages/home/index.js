@@ -5,7 +5,7 @@ import categories, { getMovies, getChosenMovie } from '../../services/api';
 import { HomeBox, MoviesBox } from './styles';
 import Loading from '../../components/reusableComponents/Loading';
 import Header from '../../components/reusableComponents/Header';
-import EmphasisMovie from '../../components/home/EmphasisMovie';
+import EmphasisMovie from '../../components/reusableComponents/EmphasisMovie';
 import SectionMovie from '../../components/home/SectionMovie';
 import FooterHome from '../../components/reusableComponents/Footer';
 import ModalMovie from '../../components/reusableComponents/ModalMovie';
@@ -20,17 +20,16 @@ function Home() {
     setModal(Param);
   } 
 
-  const viewHome = () => {
+  const viewPage = (className, duration) => {
     setTimeout(() => {
-      document.querySelector('.home-page').classList.remove('hidden');
+      document.querySelector(className).classList.remove('hidden');
       setCloseLoad(true);
-    }, 1500);
+    }, duration);
   };
 
   const fetchAll = async () => {
     try {
-      await fetchChosenMovie(await fetchMovies());
-      viewHome();
+      await fetchChosenMovie(await fetchMovies()).then(() => { viewPage('.home-page', 1500); });
     } catch (e) {
       console.log(e);
     }

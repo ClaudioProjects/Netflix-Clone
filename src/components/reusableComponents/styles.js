@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Footer = styled.footer`
   padding-left: 14vw;
+  padding-top: 1vw;
   background: #141414;
 
   .social-media-icons{
@@ -79,7 +80,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 8.5vw;
+    width: 12vw;
     margin-left: 2vw;
 
     * {
@@ -211,7 +212,7 @@ export const MovieItemStyle = styled.button`
       z-index: 10;
     }
 
-    .movie-item:hover .details-movie-item {
+    :hover .details-movie-item {
       display: none;
     }
   }

@@ -92,8 +92,13 @@ export default function EmphasisMovie(props) {
     props.props({
       id: props.chosenMovie.id,
       isSet: true,
-      isMovie: props.chosenMovie.media_type !== 'tv',
+      isMovie: MovioOrTv(),
     });
+  }
+
+  function MovioOrTv() {
+    if (props.isSearchByGenre) return props.isSearchByGenre.isMovie;
+    return props.chosenMovie.media_type !== 'tv';
   }
 
   function isTv() {

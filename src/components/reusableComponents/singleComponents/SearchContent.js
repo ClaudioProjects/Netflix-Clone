@@ -1,7 +1,17 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FaSistrix } from 'react-icons/fa';
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+`;
 
 export default function SearchContent() {
   const history = useNavigate();
@@ -11,9 +21,14 @@ export default function SearchContent() {
     setSearchMovie(e.target.value);
   }
 
+  function formatSearchMovie() {
+    const path = searchMovie.trim().split(' ');
+    return path.join('$');
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    history(`/search?${searchMovie}`);
+    history(`/search/${formatSearchMovie()}`);
   }
 
   function handleFocus(e) {
@@ -32,7 +47,7 @@ export default function SearchContent() {
   }
  
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+    <Form className="header-search" onSubmit={handleSubmit}>
       <label className="btn-search">
         <input 
           className="hidden input-search" 
@@ -44,10 +59,11 @@ export default function SearchContent() {
           spellCheck="false"
           autoCorrect="off"
           placeholder="Filmes e series"
+          maxLength={40}
         ></input>
         <FaSistrix className="search-icon"></FaSistrix>
       </label>
-      <img className="user-img" src="./images/user.png" alt="User images"></img>
-    </form>
+      <img className="user-img" src="/images/user.png" alt="User images"></img>
+    </Form>
   );
 }

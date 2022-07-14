@@ -21,27 +21,27 @@ const categories = [
   {
     name: 'comedyAndRomance',
     title: 'Comédias romanticas',
-    path: getPathGenresMovies([35, 10749]),
+    path: getPathGenresMovies([35, 10749], true, 1),
   },
   {
     name: 'sci-fiAndFantasy',
     title: 'Ficção cientifica e fantasia',
-    path: getPathGenresMovies([14, 878]),
+    path: getPathGenresMovies([14, 878], true, 1),
   },
   {
     name: 'actionAndAventure',
     title: 'Ação e aventura',
-    path: getPathGenresMovies([28, 12]),
+    path: getPathGenresMovies([28, 12], true, 1),
   },
   {
     name: 'horror',
     title: 'Terror',
-    path: getPathGenresMovies([27]),
+    path: getPathGenresMovies([27], true, 1),
   },
   {
     name: 'documentary',
     title: 'Documentários',
-    path: getPathGenresMovies([99]),
+    path: getPathGenresMovies([99], true, 1),
   },
   
 ];
@@ -153,29 +153,60 @@ export const getMovies = async (path) => {
 
 export const getChosenMovie = async (id, isMovie) => {
   try {
-    const movieOrTv = isMovie ? 'movie' : 'tv';
-    const url = `${API_BASE}/${movieOrTv}/${id}?${API_KEY}${LANGUAGE}`;
-    const response = await fetch(url);
-    return await response.json();
+    const url = `/${isMovieFunc(isMovie)}/${id}?${API_KEY}${LANGUAGE}`;
+    return await getMovies(url);
   } catch (e) {
     console.log(e);
   }
 };
-
-function getPathGenresMovies(genres) {
-  const string = genres.join(',');
-  return `/discover/movie?${API_KEY}&with_genres=${string}${LANGUAGE}`;
-}
 
 export const getSimilarMovie = async (id, isMovie) => {
   try {
-    const movieOrTv = isMovie ? 'movie' : 'tv';
-    const url = `${API_BASE}/${movieOrTv}/${id}/similar?${API_KEY}${LANGUAGE}`;
-    const response = await fetch(url);
-    return response.json();
+    const url = `/${isMovieFunc(isMovie)}/${id}/similar?${API_KEY}${LANGUAGE}`;
+    return await getMovies(url);
   } catch (e) {
     console.log(e);
   }
 };
+
+export const searchByGenre = async (idGenre, isMovie, page) => {
+  try {
+    const genreId = idGenre.split(',');
+    const data = await getMovies(getPathGenresMovies(genreId, isMovie, page));
+    return data.results;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const searchByQuery = async (query, page) => {
+  try {
+    const queryFormat = query.join(',');
+    const url = `/search/multi?${API_KEY}&query=${queryFormat}${LANGUAGE}&page=${page}`;
+    const data = await getMovies(url);
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getGenreList = async (isMovie) => {
+  try {
+    const url = `/genre/${isMovieFunc(isMovie)}/list?${API_KEY}${LANGUAGE}`;
+    return await getMovies(url);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+function getPathGenresMovies(genres, isMovie, page) {
+  const string = genres.join(',');
+  return `/discover/${isMovieFunc(isMovie)}?${API_KEY}&with_genres=${string}${LANGUAGE}&page=${page}`;
+}
+
+function isMovieFunc(isMovie) {
+  const movieOrTv = isMovie ? 'movie' : 'tv';
+  return movieOrTv;
+}
 
 export default categories;

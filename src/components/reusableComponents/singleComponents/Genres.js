@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { genre as genres } from '../../../services/api';
+import { Link } from 'react-router-dom';
+import { getGenreList } from '../../../services/api';
 
 const GenreContent = styled.div`
   position: relative;
   z-index: 30;
   transition: 300ms ease-in-out;
+  display: flex;
+  gap: 1vw;
+  margin-left: 1vw;
 
-  :hover .genre-items {
+  .genre-list:hover .genre-items {
     display: flex;
   }
 
@@ -41,6 +45,8 @@ const GenreContent = styled.div`
   }
 
   @media(max-width: 770px) {
+
+
     .btn-genre {
       font-size: 3.5vw;
     }
@@ -48,25 +54,54 @@ const GenreContent = styled.div`
     .genre-items {
       width: 80vw;
       left: -27vw;
+      top: 5vw;
       background-color: #000000;
     }
 
     .item {
       font-size: 2.5vw;
+      height: 5vw;
     }
   }
 `;
 
 export default function Genres() {
+  const [moviesList, setMoviesList] = React.useState([]);
+  const [seriesList, setSeriesList] = React.useState([]);
+  const arrGenreOcult = [10763, 10767, 10766];
+
+  const fetchGenres = async () => {
+    const movie = await getGenreList(true);
+    const serie = await getGenreList(false);
+    setMoviesList(movie);
+    setSeriesList(serie);
+  };
+
+  React.useEffect(() => {
+    fetchGenres();
+  }, []);
+
   return (
-    <GenreContent>
-      <button className="btn-genre">Generos</button>
-      <div className="genre-items">
-        {genres.map((genre) => {
-          return (
-            <p className="item" key={genre.id}>{genre.name}</p>
-          );
-        })}
+    seriesList.genres && seriesList.genres.length > 0 && <GenreContent>
+      <div className="genre-list">
+        <p className="btn-genre movies">Filmes</p>
+        <div className="genre-items">
+          {moviesList.genres.map((genre) => {
+            return (
+              <Link to={`/search/movie/${genre.id}`} className="item" key={genre.id}>{genre.name}</Link>
+            );
+          })}
+        </div>
+      </div>
+      <div className="genre-list">
+        <p className="btn-genre">Series</p>
+        <div className="genre-items">
+          {seriesList.genres.map((genre) => {
+            return (
+              !arrGenreOcult.includes(genre.id) && <Link to={`/search/tv/${genre.id}`} className="item" key={genre.id}>{genre.name}</Link>
+            );
+          })}
+        </div>
       </div>
     </GenreContent>
   );

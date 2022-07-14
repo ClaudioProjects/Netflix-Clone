@@ -1,10 +1,11 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import { Header } from './styles';
 import SearchContent from './singleComponents/SearchContent';
 import Genres from './singleComponents/Genres';
 
-export default function HeaderHome(isHome) {
+export default function HeaderHome() {
   const [blackHeader, setBlackHeader] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,13 +27,10 @@ export default function HeaderHome(isHome) {
   return (
     <Header className={!blackHeader ? 'black' : ''}>
       <div style={{ display: 'flex' }}>
-        <img className="header-logo" src="./images/logo.png" alt="Logo Netflix"></img>
+        <Link to={'/'}>
+          <img className="header-logo" src="/images/logo.png" alt="Logo Netflix"></img>
+        </Link>
         <div className="header-items">
-          <Link
-            style={
-              isHome ? { pointerEvents: 'none' } : {}
-            }
-            to={'/home'}>inicio</Link>
           <Genres></Genres>
         </div>
       </div>

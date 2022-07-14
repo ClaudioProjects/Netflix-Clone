@@ -38,7 +38,7 @@ export default function ModalMovie(props) {
     setTimeout(() => {
       document.querySelector('.load').classList.remove('hidden');
       setCloseLoad(true);
-    }, 1500);
+    }, 500);
   }
   
   function start() {
@@ -126,7 +126,7 @@ export default function ModalMovie(props) {
                 <h2>Titulos semelhantes</h2>
                 {similarMovie.map((movie) => {
                   return (
-                    movie.id !== props.modal.id && <MovieItem className="shadow" key={movie.id} props={props.props} movie={movie} style={{ border: 'none' }} />
+                    movie.id !== props.modal.id && <MovieItem className="shadow" key={movie.id} props={props.props} movie={movie} isModal={props.modal} style={{ border: 'none' }} />
                   );
                 })}
               </div>
