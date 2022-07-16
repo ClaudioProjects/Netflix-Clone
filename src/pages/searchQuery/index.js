@@ -83,7 +83,7 @@ export default function index() {
         <Header />
         {movies.results.length !== 0 
           ? (<div>
-            <h2 className="title-query">{movies.results.length} Resultados de {returnTitle()}</h2>
+            <h2 className="title-query">Resultados de {returnTitle()}</h2>
             {modal.isSet && <ModalMovie props={setIdModalFNC} modal={modal}></ModalMovie>}
             <SectionMovieGrid props={setIdModalFNC} movies={movies.results} isSearchByQuery></SectionMovieGrid>
           </div>)

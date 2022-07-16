@@ -153,6 +153,7 @@ export const MovieItemStyle = styled.button`
   position: relative;
   z-index: 10;
   cursor: pointer;
+  background: #141414;
 
   :hover {
     transition: 300ms ease-in-out;
@@ -231,6 +232,7 @@ export const Modal = styled.div`
   
   .modal-content {
     overflow-y: auto;
+    overflow-x: hidden;
     width: 60vw;
     min-height: 100vh;
     background: #141414;
