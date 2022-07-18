@@ -31,18 +31,32 @@ export default function MovieItem(props) {
     setImgError(!imgError);
   }
 
+  function onLoadImg(e) {
+    const img = e.target;
+    const parent = img.parentNode;
+    const loading = parent.querySelector('.loading-core');
+    if (img.src !== `${URL_IMG}w400${props.movie.poster_path}`) {
+      img.src = `${URL_IMG}w400${props.movie.poster_path}`;
+      img.classList.remove('hidden-img');
+      loading.classList.add('hidden');
+    }
+  }
+
   React.useEffect(() => {
   }, [imgError]);
 
   return (
     props.movie.poster_path && props.movie.backdrop_path 
       && <LazyLoadComponent><MovieItemStyle style={{ border: 'none' }} className="movie-item" onClick={openModal}>
-      <img 
-        src={`${URL_IMG}w400${props.movie.poster_path}`} 
+      <div className="loading-core"></div>
+      <img
+        className="hidden-img" 
+        src="/images/image-preload.png" 
         alt={props.movie.title}
         loading="lazy"
         decoding="async"
         onError={retryElement}
+        onLoad={onLoadImg}
       ></img>
       <div className="details-movie-item">
         <div className="details-move-item-text">

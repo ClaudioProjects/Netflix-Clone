@@ -235,7 +235,7 @@ export const Modal = styled.div`
     overflow-x: hidden;
     width: 60vw;
     min-height: 100vh;
-    background: #141414;
+    background: #0A0A0A;
     position: absolute;
     top: 10vw;
     right: 50%;
@@ -283,7 +283,7 @@ export const Modal = styled.div`
     color: #FFF;
     width: 100%;
     background: rgb(0,0,0,0);
-    background: linear-gradient(180deg, #1414140a 0%, #14141496 40%, #141414c4 80%, #141414 100%);
+    background: linear-gradient(180deg, #0A0A0A02 0%, #0A0A0A20 40%, #0A0A0Ad8 85%, #0A0A0A 100%);
   }
 
   .title h2 {

@@ -23,6 +23,11 @@ export const SectionMovieContent = styled.div`
 
   .movie-item {
     height: 100%;
+    width: 12vw;
+
+    @media (max-width: 770px) {
+      width: 33vw;
+    }
   }
 
   .movie-item img {

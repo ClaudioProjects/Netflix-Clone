@@ -11,6 +11,8 @@ const Section = styled.div`
   .movie-item {
     width: 100%;
     margin-bottom: 3vw;
+    height: 20vw;
+    width: 1fr;
   }
 
   .movie-item img {
@@ -20,6 +22,10 @@ const Section = styled.div`
 
   @media(max-width: 770px) {
     grid-template-columns: repeat(4, 1fr);
+
+    .movie-item {
+      height: 33vw;
+    }
   }
 `;
 

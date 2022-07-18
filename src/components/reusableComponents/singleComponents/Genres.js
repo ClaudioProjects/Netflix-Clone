@@ -53,14 +53,14 @@ const GenreContent = styled.div`
 
     .genre-items {
       width: 80vw;
-      left: -27vw;
-      top: 5vw;
+      left: -15vw;
+      top: 4vw;
       background-color: #000000;
     }
 
     .item {
       font-size: 2.5vw;
-      height: 5vw;
+      height: 7vw;
     }
   }
 `;
