@@ -26,7 +26,7 @@ export default function FooterHome() {
         </div>
         <ItemsFooterHome></ItemsFooterHome>
         <p className="final-considerations">
-          Este é um projeto feito sem fins lucrativos, o intuido é apenas o incentivo ao conhecimento.
+          Este é um projeto feito sem fins lucrativos, o intuito é apenas o incentivo ao conhecimento.
         </p>
       </div>
     </Footer>
