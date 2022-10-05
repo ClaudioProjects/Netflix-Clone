@@ -60,7 +60,7 @@ npm start
 
 * Esse é um projeto que não visa nenhum fim lucrativo, o objetivo é apenas praticar o conhecimento em react e consumir uma api.
 
-Muito obrigado por quem leu até aqui, este projeto é de livre acesso e sem restrições, qualquer bug entrar em contato pelo email na seção de contato
+Muito obrigado para quem leu até aqui, este projeto é de livre acesso e sem restrições, qualquer bug entrar em contato pelo email na seção de contato
 
 ### Contato 
 
